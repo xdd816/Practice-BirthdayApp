@@ -1,0 +1,8 @@
+build/
+build-*/
+*.user
+*.pro.user
+*.exe
+*.dll
+debug/
+release/
