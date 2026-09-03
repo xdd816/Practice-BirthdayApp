@@ -3,7 +3,6 @@
 EventListModel::EventListModel(QObject *parent)
     : QAbstractListModel(parent)
 {
-    // Тимчасово додамо пару записів прямо тут, щоб переконатися, що C++ передає дані в QML
     m_events.append(MyEvent("Мама", QDate(1975, 5, 12)));
     m_events.append(MyEvent("Брат", QDate(2005, 11, 30)));
 }
@@ -22,11 +21,10 @@ QVariant EventListModel::data(const QModelIndex &index, int role) const
 
     const MyEvent &event = m_events[index.row()];
 
-    // Повертаємо дані залежно від того, що просить QML
     if (role == NameRole)
         return event.getName();
     else if (role == DateRole)
-        return event.getDate().toString("dd.MM.yyyy"); // Красиво форматуємо дату
+        return event.getDate().toString("dd.MM.yyyy");
 
     return QVariant();
 }
@@ -34,14 +32,13 @@ QVariant EventListModel::data(const QModelIndex &index, int role) const
 QHash<int, QByteArray> EventListModel::roleNames() const
 {
     QHash<int, QByteArray> roles;
-    roles[NameRole] = "name"; // Це слово ми використовуємо в QML (text: name)
-    roles[DateRole] = "date"; // Це слово ми використовуємо в QML (text: date)
+    roles[NameRole] = "name";
+    roles[DateRole] = "date";
     return roles;
 }
 
 void EventListModel::addEvent(const QString &name, const QDate &date)
 {
-    // Правильне додавання рядка, щоб інтерфейс автоматично оновився
     beginInsertRows(QModelIndex(), m_events.count(), m_events.count());
     m_events.append(MyEvent(name, date));
     endInsertRows();

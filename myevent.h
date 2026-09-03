@@ -6,11 +6,10 @@
 class MyEvent
 {
 public:
-    MyEvent(); // Default constructor
-    MyEvent(QString name, QDate date); // Constructor with parameters
+    MyEvent();
+    MyEvent(QString name, QDate date);
     MyEvent(QString name, QDate date, QString notes);
 
-    // Getters and setters for member variables
     QString getName() const;
     void setName(const QString &newName);
 
@@ -26,4 +25,4 @@ private:
     QString notes;
 };
 
-#endif // MYEVENT_H
+#endif

@@ -22,4 +22,4 @@ signals:
 };
 
 
-#endif // JSON_WORK_H
+#endif

@@ -29,4 +29,4 @@ private:
     MyEvent *myEvent;
 };
 
-#endif // MYEVENTCONFIGURATIONFORM_H
+#endif

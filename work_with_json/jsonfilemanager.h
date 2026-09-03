@@ -23,4 +23,4 @@ signals:
 
 };
 
-#endif // JSONFILEMANAGER_H
+#endif

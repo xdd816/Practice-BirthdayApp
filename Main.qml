@@ -6,7 +6,7 @@ ApplicationWindow {
     id: window
     visible: true
     width: 400
-    height: 620 // Збільшили висоту для комфортного розміщення нотаток
+    height: 620
     title: "Birthday Reminder"
     color: "#0f172a"
 
@@ -53,7 +53,6 @@ ApplicationWindow {
         }
     }
 
-    // Popup для додавання / редагування
     Popup {
             id: eventDialog
             width: 320
@@ -84,8 +83,8 @@ ApplicationWindow {
                     id: nameInput
                     width: parent.width
                     placeholderText: "Ім'я"
-                    color: "#f8fafc"                 // Білий колір введеного тексту
-                    placeholderTextColor: "#94a3b8"  // Світло-сірий колір підказки
+                    color: "#f8fafc"
+                    placeholderTextColor: "#94a3b8"
                     background: Rectangle { color: "#0f172a"; border.color: "#334155"; radius: 8 }
                 }
 
@@ -115,7 +114,6 @@ ApplicationWindow {
                     contentItem: Text { text: parent.text; color: "white"; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }
                     onClicked: {
                         if (eventDialog.isEditMode) {
-                            // Логіка редагування
                         } else {
                             myEventModel.saveNewEvent(nameInput.text, dateInput.text, notesInput.text)
                         }
@@ -147,7 +145,7 @@ ApplicationWindow {
 
             delegate: Rectangle {
                 width: parent.width
-                height: 85 // Збільшено висоту картки для нотатки
+                height: 85
                 color: "#1e293b"
                 radius: 10
                 border.color: "#334155"
@@ -161,7 +159,6 @@ ApplicationWindow {
                     Text { text: name; font.bold: true; font.pixelSize: 18; color: "#f8fafc" }
                     Text { text: date; font.pixelSize: 13; color: "#94a3b8" }
 
-                    // НОВА ФІЧА: Відображення нотатки у списку
                     Text {
                         text: notes !== undefined ? notes : ""
                         font.pixelSize: 12;

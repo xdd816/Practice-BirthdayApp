@@ -3,14 +3,14 @@
 JSONFileManager::JSONFileManager(const QIODevice::OpenMode& mode, const QString& fileName)
     : jsonFile(fileName)
 {
-    jsonFile.open(mode);  // Open the file with passed mode in param
+    jsonFile.open(mode);
 }
 
 JSONFileManager::~JSONFileManager()
 {
     if (jsonFile.isOpen())
     {
-        jsonFile.close();  // Close the file
+        jsonFile.close();
     }
 }
 
@@ -18,9 +18,9 @@ void JSONFileManager::writeJsonArray(const QJsonArray& jsonArray)
 {
     if (jsonFile.isOpen())
     {
-        jsonFile.resize(0);  // Get jsonFile empty
+        jsonFile.resize(0);
         jsonFile.seek(0);
-        jsonFile.write(QJsonDocument(jsonArray).toJson());  // Write new json array to our json file
+        jsonFile.write(QJsonDocument(jsonArray).toJson());
     }
 }
 

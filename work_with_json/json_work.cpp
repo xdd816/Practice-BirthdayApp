@@ -19,7 +19,6 @@ void JSONWork::writeToJson(const QString& event_name, const QDate& event_date)
     JSONFileManager jsonManager(QIODevice::ReadWrite | QIODevice::Text);
     QJsonArray jArrToSort = jsonManager.readFromJsonArray();
 
-    // Create new JSON object
     QJsonObject recordObject;
     recordObject.insert("Name", QJsonValue::fromVariant(event_name));
     recordObject.insert("Date", QJsonValue::fromVariant(event_date));

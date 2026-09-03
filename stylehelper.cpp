@@ -16,7 +16,7 @@ QByteArray StyleHelper::fileRead(const QString &fileName)
         return QByteArray();
     }
 
-    QByteArray data = fileWithStyles.readAll();  // Get all data from file with styles
+    QByteArray data = fileWithStyles.readAll();
     fileWithStyles.close();
 
     return data;

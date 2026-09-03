@@ -22,19 +22,16 @@ QWidget *WidgetFactory::getNewEventWidget(const QString &nameUser, const QString
     QDate currentDay = QDate::currentDate();
     QDate dateFromString = QDate::fromString(dateUser, "yyyy-MM-dd");
 
-    QString formattedDate = dateFromString.toString("dd.MM");  // Format date
+    QString formattedDate = dateFromString.toString("dd.MM");
     QString daysToBirthday = " (Days to Birthday: " + QString::number(currentDay.daysTo(dateFromString)) + ")";
 
-    std::unique_ptr<QLabel> lblUserName = std::make_unique<QLabel>(nameUser);  // Creating new Label with User Name
-    std::unique_ptr<QLabel> lblUserDate = std::make_unique<QLabel>(formattedDate + daysToBirthday);  // Creating new Label with our formatted date
-        // and counted days to birthday
+    std::unique_ptr<QLabel> lblUserName = std::make_unique<QLabel>(nameUser);
+    std::unique_ptr<QLabel> lblUserDate = std::make_unique<QLabel>(formattedDate + daysToBirthday);
 
-    // Label with user name formating
     QFont userNameFont = lblUserName->font();
     userNameFont.setBold(true);
     lblUserName->setFont(userNameFont);
 
-    // Delete button
     std::unique_ptr<QPushButton> deleteButton = std::make_unique<QPushButton>();
     deleteButton->setText("Delete");
     deleteButton->setMinimumSize(80, 20);
@@ -45,7 +42,6 @@ QWidget *WidgetFactory::getNewEventWidget(const QString &nameUser, const QString
         deleteBtnActions();
     });
 
-    //Edit button
     std::unique_ptr<QPushButton> editButton = std::make_unique<QPushButton>();
     editButton->setText("Edit");
     editButton->setMinimumSize(80, 20);
@@ -56,7 +52,6 @@ QWidget *WidgetFactory::getNewEventWidget(const QString &nameUser, const QString
         editBtnActions();
     });
 
-    // Add to layout
     layOneUser->addWidget(lblUserName.release(), 0, 0);
     layOneUser->addWidget(deleteButton.release(), 0, 1);
     layOneUser->addWidget(lblUserDate.release(), 1, 0);
@@ -69,7 +64,6 @@ QWidget *WidgetFactory::getNewEventWidget(const QString &nameUser, const QString
 
 void WidgetFactory::generateWidgetsFromJson(QLayout *targetLayout, bool isLimitedCount)
 {
-    // Delete existing widgets from the container
     QLayoutItem* wItem;
     while ((wItem = targetLayout->takeAt(0)) != nullptr) {
         QWidget* widgetToRemove = wItem->widget();
@@ -81,13 +75,12 @@ void WidgetFactory::generateWidgetsFromJson(QLayout *targetLayout, bool isLimite
 
     JSONFileManager jsonManager;
     QJsonArray jArr = jsonManager.readFromJsonArray();
-    QString nameUser, dateUserStr;  // Creating variables for use in the loop
+    QString nameUser, dateUserStr;
     QDate dateUser;
 
-    //coordinates for widget insertion into QGridLayoutvv
     int row = 0;
     int col = 0;
-    const int maxCols = 3; // Maximum number of columns before switching to a new row
+    const int maxCols = 3;
 
     for (const QJsonValue &value : jArr)
     {
@@ -97,14 +90,11 @@ void WidgetFactory::generateWidgetsFromJson(QLayout *targetLayout, bool isLimite
         dateUserStr = jsonObj.value("Date").toString();
         dateUser = QDate::fromString(dateUserStr, "yyyy-MM-dd");
 
-        // Cerating label
-        QWidget* eventWidget = WidgetFactory::getNewEventWidget(nameUser, dateUserStr,
-            // deleteBtn actions
+        QWidget* eventWidget = WidgetFactory::getNewEventWidget(nameUser, dateUserStr;
             [dateUserStr, nameUser, targetLayout]() {
                 JSONWork::deleteFromJson(nameUser, dateUserStr);
                 generateWidgetsFromJson(targetLayout);
             },
-            // editBtn actions
             [dateUser, dateUserStr, nameUser, targetLayout]() {
                 myEvent->setName(nameUser);
                 myEvent->setDate(dateUser);
@@ -114,7 +104,6 @@ void WidgetFactory::generateWidgetsFromJson(QLayout *targetLayout, bool isLimite
                 generateWidgetsFromJson(targetLayout);
             }
         );
-        // Display widget
         if (eventWidget) {
             if (QGridLayout *gridLayout = qobject_cast<QGridLayout*>(targetLayout)) {
                 gridLayout->addWidget(eventWidget, row, col);
