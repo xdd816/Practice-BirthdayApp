@@ -1,10 +1,11 @@
-# Birthday Reminder App
+Birthday Reminder App
 
-Програма для нагадувань про дні народження та події, написана за допомогою C++ та Qt/QML.
+An application for managing birthday and event reminders, developed using C++ and Qt/QML.
 
-## Як запустити проєкт локально:
-1. Переконайтеся, що у вас встановлено Qt Creator та бібліотеки Qt.
-2. Завантажте цей репозиторій на свій комп'ютер.
-3. Відкрийте файл проєкту у середовищі Qt Creator.
-4. У вікні налаштування проєкту (Configure Project) оберіть ваш стандартний комплект (Kit), наприклад, Desktop Qt MinGW 64-bit.
-5. Натисніть кнопку **Run** (зелений трикутник зліва внизу) або `Ctrl + R`, щоб зібрати та запустити програму.
+How to Run the Project Locally
+
+1. Make sure you have Qt Creator and the required Qt libraries installed.
+2. Clone or download this repository to your computer.
+3. Open the project file in Qt Creator.
+4. In the Configure Project window, select your preferred Kit, for example, Desktop Qt MinGW 64-bit.
+5. Click the Run button (the green triangle in the bottom-left corner) or press Ctrl + R to build and run the application.
