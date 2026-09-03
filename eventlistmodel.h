@@ -24,7 +24,6 @@ public:
     Q_INVOKABLE void addEvent(const QString &name, const QDate &date);
     Q_INVOKABLE void loadEvents();
     Q_INVOKABLE void saveNewEvent(const QString &name, const QString &dateStr, const QString &notes);
-    //met for delete
     Q_INVOKABLE void deleteEvent(int index);
     Q_INVOKABLE QString checkTodaysBirthdays();
 
